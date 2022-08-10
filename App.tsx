@@ -103,14 +103,17 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
+    fontFamily: 'SFProDisplay-Regular',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
+    fontFamily: 'SFProDisplay-Regular',
   },
   highlight: {
     fontWeight: '700',
+    fontFamily: 'SFProDisplay-Regular',
   },
 });
 
