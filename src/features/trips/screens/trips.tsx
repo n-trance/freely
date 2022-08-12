@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   ActivityIndicator,
@@ -14,6 +13,7 @@ import { TripCard } from '../components/trip-card';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigation/root';
 import colors from '../../../constants/colors';
+import { Text } from '../../../components/text';
 
 export const TripsScreen = () => {
   const dispatch = useAppDispatch();

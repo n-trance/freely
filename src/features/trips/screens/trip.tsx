@@ -1,6 +1,7 @@
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { Pressable, StyleSheet, View, SafeAreaView } from 'react-native';
+import { Text } from '../../../components/text';
 import colors from '../../../constants/colors';
 import spacing from '../../../constants/spacing';
 import { useAppSelector } from '../../../hooks';
@@ -62,5 +63,6 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'SFProDisplay-Bold',
   },
 });

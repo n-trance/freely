@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, AppState } from 'react-native';
+import { Pressable, StyleSheet, AppState } from 'react-native';
 import type { AppStateStatus } from 'react-native';
+import { Text } from '../../../components/text';
 import colors from '../../../constants/colors';
 import spacing from '../../../constants/spacing';
 import { Trip } from '../trips-slice';
@@ -75,6 +76,7 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
+    fontFamily: 'SFProDisplay-Bold',
   },
   dateText: {
     fontSize: 16,
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 12,
     fontWeight: 'bold',
+    fontFamily: 'SFProDisplay-Bold',
     position: 'absolute',
     right: spacing.s,
     bottom: spacing.s,
