@@ -1,8 +1,32 @@
-import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Pressable, StyleSheet, Text, AppState } from 'react-native';
+import type { AppStateStatus } from 'react-native';
 import colors from '../../../constants/colors';
 import spacing from '../../../constants/spacing';
 import { Trip } from '../trips-slice';
+
+// app has come from background to foreground
+const useFromBackground = () => {
+  const appState = useRef(AppState.currentState);
+  const [fromBackgound, setFromBackground] = useState(false);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', handleAppStateChange);
+    return () => sub.remove();
+  }, []);
+
+  const handleAppStateChange = (nextAppState: AppStateStatus) => {
+    if (
+      appState.current.match(/inactive|background/) &&
+      nextAppState === 'active'
+    ) {
+      setFromBackground(true);
+    }
+    appState.current = nextAppState;
+  };
+
+  return fromBackgound;
+};
 
 export const TripCard = ({
   onPress,
@@ -14,12 +38,20 @@ export const TripCard = ({
   Trip,
   'id' | 'name' | 'startDate' | 'endDate' | 'status'
 >) => {
+  const fromBackground = useFromBackground();
+
   return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
-        { opacity: pressed ? 0.5 : 1 },
         styles.container,
+        { opacity: pressed ? 0.5 : 1 },
+        {
+          backgroundColor:
+            fromBackground && status === 'NOT_STARTED'
+              ? colors.TRIP_CARD_BACKGROUND_HIGHLIGHTED
+              : colors.TRIP_CARD_BACKGROUND,
+        },
       ]}>
       <Text style={styles.nameText}>{name}</Text>
       <Text style={styles.dateText}>
