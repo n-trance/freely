@@ -18,7 +18,7 @@ type Trip = {
 type Status = 'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR';
 
 interface TripsState {
-  trips: Trip[];
+  data: Trip[];
   status: Status;
   error: SerializedError | undefined;
 }
@@ -39,7 +39,7 @@ export const fetchTripList = createAsyncThunk(
 );
 
 const initialState: TripsState = {
-  trips: [],
+  data: [],
   status: 'IDLE',
   error: undefined,
 };
@@ -54,7 +54,7 @@ const tripsSlice = createSlice({
     });
     builder.addCase(fetchTripList.fulfilled, (state, action) => {
       state.status = 'SUCCESS';
-      state.trips = action.payload;
+      state.data = action.payload;
     });
     builder.addCase(fetchTripList.rejected, (state, action) => {
       state.status = 'ERROR';
