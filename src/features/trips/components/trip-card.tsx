@@ -21,10 +21,11 @@ export const TripCard = ({
         { opacity: pressed ? 0.5 : 1 },
         styles.container,
       ]}>
-      <Text>{name}</Text>
-      <Text>{startDate}</Text>
-      <Text>{endDate}</Text>
-      <Text>{status}</Text>
+      <Text style={styles.nameText}>{name}</Text>
+      <Text style={styles.dateText}>
+        {startDate} - {endDate}
+      </Text>
+      <Text style={styles.statusText}>{status}</Text>
     </Pressable>
   );
 };
@@ -46,5 +47,11 @@ const styles = StyleSheet.create({
   },
   dateText: {
     fontSize: 16,
+  },
+  stylesText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    // required for iOS - need the font
+    // fontFamily: 'SFProDisplay-Bold'
   },
 });
