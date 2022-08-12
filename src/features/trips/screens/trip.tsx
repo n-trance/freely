@@ -62,7 +62,5 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
-    // required for iOS - need the font
-    // fontFamily: 'SFProDisplay-Bold'
   },
 });
