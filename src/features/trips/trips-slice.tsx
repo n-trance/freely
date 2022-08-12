@@ -11,7 +11,7 @@ export type Trip = {
   name: string;
   startDate: string;
   endDate: string;
-  destination: string[];
+  destinations: string[];
   status: TripStatus;
 };
 

@@ -12,6 +12,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TripCard } from '../components/trip-card';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../../../navigation/root';
+import colors from '../../../constants/colors';
 
 export const TripsScreen = () => {
   const dispatch = useAppDispatch();
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.SCREEN_BACKGROUND,
   },
   tripsContainer: {
     flex: 1,
