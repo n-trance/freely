@@ -42,16 +42,15 @@ const styles = StyleSheet.create({
   nameText: {
     fontSize: 20,
     fontWeight: 'bold',
-    // required for iOS - need the font
-    // fontFamily: 'SFProDisplay-Bold'
   },
   dateText: {
     fontSize: 16,
   },
-  stylesText: {
+  statusText: {
     fontSize: 12,
     fontWeight: 'bold',
-    // required for iOS - need the font
-    // fontFamily: 'SFProDisplay-Bold'
+    position: 'absolute',
+    right: spacing.s,
+    bottom: spacing.s,
   },
 });

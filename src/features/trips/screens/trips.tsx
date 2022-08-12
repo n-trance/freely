@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   ScrollView,
   SafeAreaView,
+  RefreshControl,
 } from 'react-native';
 import { fetchTripList } from '../trips-slice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
@@ -40,7 +41,14 @@ export const TripsScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.tripsContainer}>
+      <ScrollView
+        style={styles.tripsContainer}
+        refreshControl={
+          <RefreshControl
+            refreshing={trips.status !== 'SUCCESS'}
+            onRefresh={() => dispatch(fetchTripList())}
+          />
+        }>
         {trips.data.map(trip => (
           <TripCard
             key={trip.id}
