@@ -6,7 +6,7 @@ import {
 
 type TripStatus = 'NOT_STARTED' | 'STARTED' | 'FINISHED';
 
-type Trip = {
+export type Trip = {
   id: number;
   name: string;
   startDate: string;

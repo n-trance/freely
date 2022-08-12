@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react';
-import { Text, View, StyleSheet, ActivityIndicator } from 'react-native';
-import { fetchTripList } from '../features/trips/trips-slice';
-import { useAppDispatch, useAppSelector } from '../hooks';
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  ScrollView,
+  SafeAreaView,
+} from 'react-native';
+import { fetchTripList } from '../trips-slice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { TripCard } from '../components/trip-card';
 
 export const TripsScreen = () => {
   const dispatch = useAppDispatch();
@@ -26,11 +34,13 @@ export const TripsScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      {trips.data.map(trip => (
-        <Text key={trip.id}>{trip.name}</Text>
-      ))}
-    </View>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.tripsContainer}>
+        {trips.data.map(trip => (
+          <TripCard key={trip.id} {...trip} />
+        ))}
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -42,5 +52,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  tripsContainer: {
+    flex: 1,
+    width: '100%',
   },
 });

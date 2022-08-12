@@ -1,8 +1,8 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/home';
-import { TripScreen } from '../screens/trip';
-import { TripsScreen } from '../screens/trips';
+import { TripScreen } from '../features/trips/screens/trip';
+import { TripsScreen } from '../features/trips/screens/trips';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from '../components/text';
 
