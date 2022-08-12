@@ -31,10 +31,9 @@ const RootTab = () => {
   );
 };
 
-type RootStackParamList = {
+export type RootStackParamList = {
   'root-tab': undefined;
-  trips: undefined;
-  trip: undefined;
+  trip: { id: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

@@ -10,11 +10,15 @@ import {
 import { fetchTripList } from '../trips-slice';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { TripCard } from '../components/trip-card';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../../../navigation/root';
 
 export const TripsScreen = () => {
   const dispatch = useAppDispatch();
 
   const trips = useAppSelector(state => state.trips);
+
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   useEffect(() => {
     const promise = dispatch(fetchTripList());
@@ -37,7 +41,11 @@ export const TripsScreen = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.tripsContainer}>
         {trips.data.map(trip => (
-          <TripCard key={trip.id} {...trip} />
+          <TripCard
+            key={trip.id}
+            onPress={() => navigation.navigate('trip', { id: trip.id })}
+            {...trip}
+          />
         ))}
       </ScrollView>
     </SafeAreaView>

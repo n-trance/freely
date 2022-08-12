@@ -7,7 +7,7 @@ import {
 type TripStatus = 'NOT_STARTED' | 'STARTED' | 'FINISHED';
 
 export type Trip = {
-  id: number;
+  id: string;
   name: string;
   startDate: string;
   endDate: string;
