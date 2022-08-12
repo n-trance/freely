@@ -6,6 +6,7 @@ import spacing from '../../../constants/spacing';
 import { Trip } from '../trips-slice';
 
 // app has come from background to foreground
+// can be extracted to own file if reused by other components
 const useFromBackground = () => {
   const appState = useRef(AppState.currentState);
   const [fromBackgound, setFromBackground] = useState(false);

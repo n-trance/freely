@@ -6,6 +6,7 @@ import spacing from '../../../constants/spacing';
 import { useAppSelector } from '../../../hooks';
 import { RootStackParamList } from '../../../navigation/root';
 
+// // can be extracted to own file if reused by other components
 const BackButton = () => {
   const navigation = useNavigation();
 
