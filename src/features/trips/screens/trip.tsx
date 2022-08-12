@@ -1,10 +1,26 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import colors from '../../../constants/colors';
 import spacing from '../../../constants/spacing';
 import { useAppSelector } from '../../../hooks';
 import { RootStackParamList } from '../../../navigation/root';
+
+const BackButton = () => {
+  const navigation = useNavigation();
+
+  if (navigation.canGoBack()) {
+    return (
+      <Pressable
+        style={{ padding: spacing.m }}
+        onPress={() => navigation.goBack()}>
+        <Text>Back</Text>
+      </Pressable>
+    );
+  }
+
+  return null;
+};
 
 export const TripScreen = () => {
   const { params } = useRoute<RouteProp<RootStackParamList, 'trip'>>();
@@ -14,14 +30,15 @@ export const TripScreen = () => {
 
   if (trip) {
     return (
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <BackButton />
         <View style={styles.content}>
           <Text style={styles.nameText}>{trip.name}</Text>
           {trip.destinations.map((destination, index) => (
             <Text key={index}>{destination}</Text>
           ))}
         </View>
-      </View>
+      </SafeAreaView>
     );
   }
 
@@ -38,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SCREEN_BACKGROUND,
   },
   content: {
-    paddingTop: spacing.m + 100,
+    paddingTop: spacing.m,
     padding: spacing.m,
   },
   nameText: {
