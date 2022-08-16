@@ -44,6 +44,7 @@ export const TripCard = ({
 
   return (
     <Pressable
+      testID="trip-card-container"
       onPress={onPress}
       style={({ pressed }) => [
         styles.container,
