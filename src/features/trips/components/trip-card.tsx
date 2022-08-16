@@ -1,34 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, AppState } from 'react-native';
-import type { AppStateStatus } from 'react-native';
+import React from 'react';
+import { Pressable, StyleSheet } from 'react-native';
 import { Text } from '../../../components/text';
 import colors from '../../../constants/colors';
 import spacing from '../../../constants/spacing';
 import { Trip } from '../trips-slice';
-
-// app has come from background to foreground
-// can be extracted to own file if reused by other components
-const useFromBackground = () => {
-  const appState = useRef(AppState.currentState);
-  const [fromBackgound, setFromBackground] = useState(false);
-
-  useEffect(() => {
-    const sub = AppState.addEventListener('change', handleAppStateChange);
-    return () => sub.remove();
-  }, []);
-
-  const handleAppStateChange = (nextAppState: AppStateStatus) => {
-    if (
-      appState.current.match(/inactive|background/) &&
-      nextAppState === 'active'
-    ) {
-      setFromBackground(true);
-    }
-    appState.current = nextAppState;
-  };
-
-  return fromBackgound;
-};
+import { useFromBackground } from './useFromBackground';
 
 export const TripCard = ({
   onPress,
@@ -56,11 +32,15 @@ export const TripCard = ({
               : colors.TRIP_CARD_BACKGROUND,
         },
       ]}>
-      <Text style={styles.nameText}>{name}</Text>
-      <Text style={styles.dateText}>
+      <Text testID="trip-card-name" style={styles.nameText}>
+        {name}
+      </Text>
+      <Text testID="trip-card-dates" style={styles.dateText}>
         {startDate} - {endDate}
       </Text>
-      <Text style={styles.statusText}>{status}</Text>
+      <Text testID="trip-card-status" style={styles.statusText}>
+        {status}
+      </Text>
     </Pressable>
   );
 };
