@@ -5,6 +5,7 @@ import { TripScreen } from '../features/trips/screens/trip';
 import { TripsScreen } from '../features/trips/screens/trips';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Text } from '../components/text';
+import { capitalize } from '../util/capitalize';
 
 type RootTabParamList = {
   home: undefined;
@@ -18,9 +19,7 @@ const RootTab = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ color }) => (
-          <Text style={{ color }}>
-            {route.name[0].toUpperCase() + route.name.slice(1)}
-          </Text>
+          <Text style={{ color }}>{capitalize(route.name)}</Text>
         ),
         tabBarLabel: () => null,
         headerShown: false,
